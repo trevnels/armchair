@@ -38,3 +38,15 @@ export async function getEventMatches(eventKey: string): Promise<Match[]> {
     });
     return res.json();
 }
+
+export async function getEvents(year: number): Promise<Event[]> {
+    const res = await fetch(`https://www.thebluealliance.com/api/v3/events/${year}`, {
+        headers: {
+            "X-TBA-Auth-Key": TBA_KEY!
+        },
+        next: {
+            revalidate: 86400 / 2
+        }
+    });
+    return res.json();
+}

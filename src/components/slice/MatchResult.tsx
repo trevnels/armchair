@@ -1,29 +1,54 @@
 import type { Match } from "tba-api-client";
+import { Card } from "../ui/card";
 
-export default function MatchResult(props: { match: Match }) {
+export default function MatchResult({ match, doubleElim }: { match: Match, doubleElim: boolean }) {
 
-    const compLevel = props.match.comp_level.replace('fm', 'F').replace('qm', 'Q').toUpperCase()
+    function renderCompLevel() {
+        switch (match.comp_level) {
+            case "qm":
+                return "Q";
+            case "qf":
+                return "QF";
+            case "sf":
+                return doubleElim ? "M" : "SF";
+            case "f":
+                return "F";
+            default:
+                return match.comp_level.toUpperCase();
+        }
+    }
 
-    if (!props.match.alliances || !props.match.alliances.red || !props.match.alliances.blue) {
+    function renderMatchNumber() {
+        if (match.comp_level === "qm" || match.comp_level === "f") {
+            return match.match_number
+        } else if (match.comp_level === "sf" && doubleElim) {
+            return match.set_number
+        } else {
+            return match.set_number + "." + match.match_number
+        }
+    }
+
+    const compLevel = renderCompLevel();
+
+    if (!match.alliances || !match.alliances.red || !match.alliances.blue) {
         return (
             <p>ERR</p>
         )
     }
 
-
-
     return (
-        <div className="flex flex-row items-center px-2 gap-2 h-16 mb-1 bg-zinc-800 rounded-lg">
-            <div className="h-auto text-center min-w-8 leading-none">
+        <Card className="flex flex-row items-center px-2 h-14 mb-1 gap-2">
+            <div className="h-auto min-w-8 leading-none">
                 <span className="text-xs text-muted-foreground">{compLevel}</span>
                 <br />
-                <span>{((compLevel === "QF" || compLevel === "SF") ? `${props.match.set_number}.` : '') + props.match.match_number}</span>
-                {/* {props.match.set_number} */}
+                <span>{renderMatchNumber()}</span>
             </div>
 
-            <AlliancesGrid alliances={props.match.alliances} />
-            <MatchScores match={props.match} />
-        </div>
+            <AlliancesGrid alliances={match.alliances} />
+            <MatchScores match={match} />
+        </Card>
+
+
     )
 
 }
@@ -40,7 +65,7 @@ function AlliancesGrid(props: { alliances: NonNullable<Match["alliances"]> }) {
         <div className="flex-grow grid grid-cols-3 w-48 text-center rounded-lg overflow-hidden h-full">
             {redTeams.map((team) => {
                 return (
-                    <div key={team} className={"font-semibold flex items-center justify-center bg-rose-500 " + (redDq?.includes(team) ? 'line-through' : '')}>
+                    <div key={team} className={"font-semibold flex items-center justify-center text-rose-400 " + (redDq?.includes(team) ? 'line-through' : '')}>
                         {team.slice(3)}
                     </div>
                 )
@@ -48,7 +73,7 @@ function AlliancesGrid(props: { alliances: NonNullable<Match["alliances"]> }) {
 
             {blueTeams.map((team) => {
                 return (
-                    <div key={team} className={"font-semibold flex items-center justify-center bg-sky-400 " + (blueDq?.includes(team) ? 'line-through' : '')}>
+                    <div key={team} className={"font-semibold flex items-center justify-center text-sky-300 " + (blueDq?.includes(team) ? 'line-through' : '')}>
                         {team.slice(3)}
                     </div>
                 )
@@ -63,7 +88,7 @@ function MatchScores(props: { match: Match }) {
     const blueScore = props.match.alliances!.blue!.score;
 
     return (
-        <div className="min-w-8 text-center leading-loose">
+        <div className="min-w-8 text-center leading-relaxed">
             <span className={(redScore > blueScore) ? 'font-bold' : ''}>{redScore}</span>
             <br />
             <span className={(blueScore > redScore) ? 'font-bold' : ''}>{blueScore}</span>

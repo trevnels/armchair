@@ -1,5 +1,6 @@
 import { DistrictSlice, EventSlice, SeasonSlice } from "@/components/slice/ExplorerSlices";
-import { processSlug } from "@/lib/utils";
+import Slice from "@/components/slice/Slice";
+import { getSeasonName, processSlug } from "@/lib/utils";
 
 export default async function ExplorerSlice({ params }: { params: { slug: string } }) {
 
@@ -7,7 +8,9 @@ export default async function ExplorerSlice({ params }: { params: { slug: string
 
     switch (slugType) {
         case 'season':
-            return <SeasonSlice year={params.slug} />;
+            return <Slice title={"Season Explorer - " + params.slug} subtitle={getSeasonName(Number(params.slug)).toUpperCase()}>
+                <SeasonSlice year={params.slug} />
+            </Slice>;
         case 'district':
             return <DistrictSlice district={params.slug} />;
         case 'event':
