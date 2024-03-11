@@ -25,8 +25,8 @@ export async function SeasonSlice({ year }: { year: string }) {
             <h5 className="leading-10 text-lg font-medium">Active Events</h5>
 
 
-            {events.map((event) => <Link href={`/${event.key}/explorer`}>
-                <Card key={event.key} className="mb-1 p-2 leading-none">
+            {events.map((event) => <Link href={`/${event.key}/explorer`} key={event.key}>
+                <Card className="mb-1 p-2 leading-none">
                     <span className="font-medium">{event.event_type_string === "District Championship" ? "District Championship" : (event.short_name || event.name)}</span><br />
                     <span className="text-muted-foreground text-xs">{event.district?.display_name || event.event_type_string}</span>
                 </Card>
@@ -73,7 +73,14 @@ export async function MatchList({ eventKey }: { eventKey: string }) {
     const matches = (await getEventMatches(eventKey)).sort((a, b) => a.time! - b.time!);
     const doubleElim = Number(eventKey.slice(0, 4)) >= 2023;
 
-    let grouped = Object.groupBy(matches, (match: Match) => match.comp_level)
+    let grouped: Record<string, Match[]> = {}
+
+    for (const match of matches) {
+        if (!grouped[match.comp_level]) {
+            grouped[match.comp_level] = []
+        }
+        grouped[match.comp_level].push(match)
+    }
 
     const compLevelNames: Record<string, string> = {
         "qm": "Qualification Matches",
