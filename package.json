@@ -24,6 +24,7 @@
     "react-dom": "^18",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "tba-api-client": "^1.1.1",
     "ws": "^8.16.0"
   },
   "devDependencies": {
