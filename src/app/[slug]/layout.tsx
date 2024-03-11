@@ -4,6 +4,7 @@ import { processSlug } from "@/lib/utils";
 import { Compass } from "lucide-react";
 import { ReactNode } from "react";
 
+export const dynamic = 'error'
 
 export default async function MainLayout({
   children,
