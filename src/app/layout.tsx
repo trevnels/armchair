@@ -12,6 +12,9 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   title: "Armchair",
   description: "A web app for exploring FIRST Robotics Competition data",
+  appleWebApp: {
+    title: "Armchair",
+  },
 };
 
 export default function RootLayout({
