@@ -26,7 +26,7 @@ export default async function MainLayout({
 
 
   return (
-    <main className="flex flex-row h-full [&>*:nth-child(3)]:hidden md:[&>*:nth-child(3)]:block">
+    <main className="flex flex-row h-dvh [&>*:nth-child(3)]:hidden md:[&>*:nth-child(3)]:block">
       <div className="w-16 bg-zinc-900 border-r border-zinc-800 flex flex-col gap-2 py-2 items-center">
         <NavbarButton segment="explorer">
           <Compass />

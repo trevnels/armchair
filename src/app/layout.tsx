@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   description: "A web app for exploring FIRST Robotics Competition data",
   appleWebApp: {
     title: "Armchair",
+    statusBarStyle: "black",
   },
 };
 
@@ -25,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <head />
-      <body className={cn("h-screen bg-background font-sans antialiased", fontSans.variable)}>{children}</body>
+      <body className={cn("h-dvh bg-background font-sans antialiased", fontSans.variable)}>{children}</body>
     </html>
   );
 }
