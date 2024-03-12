@@ -2,7 +2,7 @@ import { ReactNode, Suspense } from "react";
 import { SliceSpinner } from "../ui/spinner";
 
 export default function Slice({ children, title, subtitle }: { children?: ReactNode, title: string, subtitle: string }) {
-    return <div className="w-72 border-r flex-grow md:flex-grow-0 flex flex-col">
+    return <div className="w-72 border-r flex-grow flex-shrink-0 md:flex-grow-0 flex flex-col">
         <SliceTitle leader={title}>{subtitle}</SliceTitle>
         <div className="px-2 overflow-y-auto flex-grow">
             <Suspense fallback={<SliceSpinner />}>

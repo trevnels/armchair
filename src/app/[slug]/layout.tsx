@@ -1,6 +1,6 @@
 import { NavbarButton } from "@/components/navbar";
 import { SliceSpinner } from "@/components/ui/spinner";
-import { Compass } from "lucide-react";
+import { AreaChart, Armchair, Wand2 } from "lucide-react";
 import { ReactNode, Suspense } from "react";
 import Table from "./grid";
 
@@ -27,11 +27,17 @@ export default function MainLayout({
     <main className="flex flex-row h-dvh [&>*:nth-child(3)]:hidden md:[&>*:nth-child(3)]:block">
       <div className="w-16 border-r flex flex-col gap-2 py-2 items-center flex-shrink-0">
         <NavbarButton segment="explorer">
-          <Compass />
+          <Armchair />
+        </NavbarButton>
+        <NavbarButton segment="insights">
+          <AreaChart />
+        </NavbarButton>
+        <NavbarButton segment="predictor">
+          <Wand2 />
         </NavbarButton>
       </div>
       {children}
-      <div className="flex-grow md:block overflow-x-auto">
+      <div className="flex-grow md:block overflow-auto h-dvh">
         {
           <Suspense fallback={<SliceSpinner />}>
             <Table event={params.slug} />

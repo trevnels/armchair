@@ -87,11 +87,13 @@ function MatchScores(props: { match: Match }) {
     const redScore = props.match.alliances!.red!.score;
     const blueScore = props.match.alliances!.blue!.score;
 
+    const winner = props.match.winning_alliance;
+
     return (
         <div className="min-w-8 text-center leading-relaxed">
-            <span className={(redScore > blueScore) ? 'font-bold' : ''}>{redScore}</span>
+            <span className={(winner === 'red') ? 'font-bold' : ''}>{redScore}</span>
             <br />
-            <span className={(blueScore > redScore) ? 'font-bold' : ''}>{blueScore}</span>
+            <span className={(winner === 'blue') ? 'font-bold' : ''}>{blueScore}</span>
         </div>
     )
 }

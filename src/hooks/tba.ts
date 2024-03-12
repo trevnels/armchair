@@ -1,4 +1,5 @@
-import type { District_List, Event, Match } from "tba-api-client";
+import 'server-only';
+import type { District_List, Event, Match, Media } from "tba-api-client";
 
 const TBA_KEY = process.env.TBA_KEY;
 
@@ -49,4 +50,25 @@ export async function getEvents(year: number): Promise<Event[]> {
         }
     });
     return res.json();
+}
+
+export async function getAvatar(team: string, year: number): Promise<string | null> {
+    const res = await fetch(`https://www.thebluealliance.com/api/v3/team/${team}/media/${year}`, {
+        headers: {
+            "X-TBA-Auth-Key": TBA_KEY!
+        },
+        next: {
+            revalidate: 86400
+        }
+    });
+
+    const data: Media[] = await res.json();
+
+    if (!data.find) {
+        console.error(data);
+    }
+
+    const avatar = data?.find((media) => media.type === "avatar");
+
+    return avatar?.details?.base64Image || null;
 }
