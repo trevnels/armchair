@@ -13,7 +13,7 @@ export async function SeasonSlice({ year }: { year: string }) {
 
     return (
         <>
-            Districts:
+            <h5 className="leading-10 text-lg font-medium">Districts</h5>
 
             <div className="grid grid-cols-4 gap-2">
                 {districts.map((district) => <Button key={district.abbreviation} asChild variant="outline"><Link href={`/${district.key}/explorer`} >{district.abbreviation}</Link></Button>)}

@@ -1,3 +1,4 @@
+import Providers from "@/app/providers";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
@@ -26,7 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="dark">
       <head />
-      <body className={cn("h-dvh bg-background font-sans antialiased", fontSans.variable)}>{children}</body>
+      <body className={cn("h-dvh bg-background font-sans antialiased", fontSans.variable)}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

@@ -25,7 +25,7 @@ export function TeamAvatar({ year, team }: { year: number, team: string }) {
         return <></>
     }
 
-    return <div className="relative w-8 h-8 rounded overflow-clip mx-auto flex justify-center items-center bg-zinc-500">
+    return <div className="relative w-12 h-12 rounded overflow-clip mx-auto flex justify-center items-center bg-zinc-500">
         <img src={data} className="w-full h-full p-0.5 rounded-sm" role="avatar" draggable={false} />
     </div>
 

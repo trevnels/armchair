@@ -1,8 +1,7 @@
 import { NavbarButton } from "@/components/navbar";
-import { SliceSpinner } from "@/components/ui/spinner";
 import { AreaChart, Armchair, Wand2 } from "lucide-react";
-import { ReactNode, Suspense } from "react";
-import Table from "./grid";
+import { ReactNode } from "react";
+import ClientGrid from "./client-grid";
 
 export const dynamic = 'error'
 
@@ -37,11 +36,8 @@ export default function MainLayout({
         </NavbarButton>
       </div>
       {children}
-      <div className="flex-grow md:block overflow-auto h-dvh">
-        {
-          <Suspense fallback={<SliceSpinner />}>
-            <Table event={params.slug} />
-          </Suspense>}
+      <div className="flex-grow md:block min-w-0 h-dvh">
+        <ClientGrid slug={params.slug} />
       </div>
     </main>
   )
