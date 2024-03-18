@@ -59,7 +59,7 @@ export default function ClientGrid({ slug }: { slug: string }) {
     // if (status === 'pending') return <div>Loading...</div>
 
     return (
-        <DataTable data={data?.pages.flat() || []} columns={colDefs} onSortingChange={setSort} sort={sort} isFetching={isFetching} fetchNextPage={() => {
+        <DataTable data={data?.pages.flat() || []} columns={colDefs} onSortingChange={setSort} sort={sort} isFetching={isFetching} columnPinning={{ left: ["index", "avatar"] }} fetchNextPage={() => {
             if (hasNextPage) {
                 console.log("fetching next page")
                 fetchNextPage()

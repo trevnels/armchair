@@ -25,14 +25,16 @@ export function deriveColDefs(data: any[]) {
             id: "index",
             header: "#",
             accessorFn: (row: any, index: number) => index + 1,
+            maxSize: 50,
+            minSize: 50,
             cell: (row: any) => <div className="text-center text-muted-foreground text-xs">{row.getValue()}</div>
         },
         {
             id: "avatar",
-            header: "Avatar",
-            accessorFn: (row: any) => { return { year: row.year, team: "frc" + row.team } },
+            header: "",
+            accessorFn: (row: any) => { return { year: row.year, team: "frc" + row.team, name: row.name || row.team_name } },
             cell: (row: any) => {
-                return <TeamAvatar year={row.getValue().year} team={row.getValue().team} />
+                return <TeamAvatar year={row.getValue().year} team={row.getValue().team} name={row.getValue().name} />
             },
         },
         {

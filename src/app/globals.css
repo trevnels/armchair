@@ -53,6 +53,8 @@
 
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
+    --muted-alt: 240 10.925% 7.95%;
+    --muted-hover: 240 11.85% 11.85%;
 
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
