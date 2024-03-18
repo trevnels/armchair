@@ -24,7 +24,7 @@ export default function MainLayout({
 
   return (
     <main className="flex flex-col-reverse md:flex-row h-dvh [&>*:nth-child(3)]:hidden md:[&>*:nth-child(3)]:block w-full">
-      <div className="w-full md:w-16 h-16 md:h-full border-t md:border-r md:border-t-0 flex flex-row md:flex-col gap-2 py-0 md:py-2 px-2 md:px-0 flex-shrink-0 items-center">
+      <div className="w-full md:w-16 h-20 md:h-full border-t md:border-r md:border-t-0 flex flex-row md:flex-col gap-2 py-2 px-2 md:px-0 flex-shrink-0 items-start md:items-center">
         <NavbarButton segment="">
           <Table />
         </NavbarButton>
