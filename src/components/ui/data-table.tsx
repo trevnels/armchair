@@ -60,7 +60,6 @@ export function DataTable<TData, TValue>({
           !isFetching &&
           fetchNextPage
         ) {
-          console.log(scrollHeight - scrollTop - clientHeight)
           fetchNextPage()
         }
       }
