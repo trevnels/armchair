@@ -23,7 +23,7 @@ export default function MainLayout({
 
 
   return (
-    <main className="flex flex-row h-dvh [&>*:nth-child(3)]:hidden md:[&>*:nth-child(3)]:block">
+    <main className="flex flex-row h-dvh [&>*:nth-child(3)]:hidden md:[&>*:nth-child(3)]:block w-full">
       <div className="w-16 border-r flex flex-col gap-2 py-2 items-center flex-shrink-0">
         <NavbarButton segment="explorer">
           <Armchair />

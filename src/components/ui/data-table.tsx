@@ -51,14 +51,16 @@ export function DataTable<TData, TValue>({
   const fetchMoreOnBottomReached = useCallback(
     (containerRefElement?: HTMLDivElement | null) => {
       if (containerRefElement) {
-        const { scrollHeight, scrollTop, clientHeight } = containerRefElement
+        const { scrollHeight, scrollTop, clientHeight, clientWidth } = containerRefElement
         //once the user has scrolled within 500px of the bottom of the table, fetch more data if we can
 
         if (
           scrollHeight - scrollTop - clientHeight < 500 &&
+          clientWidth > 0 &&
           !isFetching &&
           fetchNextPage
         ) {
+          console.log(scrollHeight - scrollTop - clientHeight)
           fetchNextPage()
         }
       }
@@ -71,7 +73,7 @@ export function DataTable<TData, TValue>({
   }, [fetchMoreOnBottomReached])
 
   return (
-    <div ref={tableContainerRef} onScroll={e => fetchMoreOnBottomReached(e.target as HTMLDivElement)} className="relative w-full h-full overflow-auto">
+    <div ref={tableContainerRef} onScroll={e => fetchMoreOnBottomReached(e.target as HTMLDivElement)} className="relative w-full h-full overflow-auto overscroll-contain">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
