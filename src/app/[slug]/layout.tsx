@@ -39,7 +39,7 @@ export default function MainLayout({
         </NavbarButton>
       </div>
       {children}
-      <div className="flex-grow md:block min-w-0 min-h-0">
+      <div className="flex-grow min-w-0 min-h-0">
         <ClientGrid slug={params.slug} />
       </div>
     </main>

@@ -117,8 +117,10 @@ export function DataTable<TData, TValue>({
         </TableBody>
       </Table>
       {isFetching ?
-        <div className="sticky bottom-0 py-16 text-center">
-          <Loader2 className="w-8 h-8 inline-block animate-spin" />
+        <div className="fixed bottom-0 py-24 md:py-16 flex items-center justify-center w-full">
+          <div className="bg-muted/50 p-4 rounded-lg w-24 h-24 flex items-center justify-center">
+            <Loader2 className="animate-spin w-full h-full" />
+          </div>
         </div> : null}
     </div>
   )

@@ -4,7 +4,7 @@ import { Skeleton } from "../ui/skeleton";
 import { placeholderAvatar } from "./placeholder";
 
 export function TeamAvatar({ year, team }: { year: number, team: string }) {
-    return <div className="w-12 h-12 rounded-md overflow-clip mx-auto flex justify-center items-center bg-accent p-0.5" >
+    return <div className="w-8 h-8 rounded-md overflow-clip mx-auto flex justify-center items-center bg-accent p-0.5" >
         <Image src={`/api/avatar/${year}/${team}`} alt="" className="w-full h-full rounded-sm" role="avatar" draggable={false} width={48} height={48} quality={90} unoptimized placeholder={placeholderAvatar} />
     </ div >
 }
