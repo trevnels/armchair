@@ -1,6 +1,6 @@
 "use client"
 
-import { TeamAvatar } from "@/components/avatar";
+import { TeamAvatar } from "@/components/avatar/avatar";
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowDownIcon, ArrowUpDownIcon, ArrowUpIcon } from "lucide-react";
