@@ -51,7 +51,7 @@ export async function getEventStandings(eventKey: string, offset: number = 0, so
 
 // TODO: merge getDistrictStandings and getSeasonStandings since they are almost identical
 
-const districtMapping = {
+const districtMapping: Record<string, string> = {
     "mar": "fma",
     "fma": "fma",
     "nc": "fnc",
