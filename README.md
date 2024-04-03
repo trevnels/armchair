@@ -6,19 +6,15 @@
 
 # armchair
 
-A new FRC scouting and analysis platform built around the Glicko-2 rating system, modified in a manner similar to Statbotics's EPA.
+An alternative frontend for browsing [Statbotics](https://www.statbotics.io/) data, optimized for both desktop and mobile use.
 
-The system is designed around the lack of manual data entry - it should provide useful insights about events and teams without having to actively record data on them.
+The current implementation is very rough, but will be cleaned up and optimized as I have time.
 
 ## To Do
 - [x] UI Design
-- [ ] Automatically populate Redis DB with TheBlueAlliance data, updating every 5 minutes
-- [ ] Initial frontend implementation
-- [ ] Work out the Glicko-2 math for overall and component ratings factoring in point margins (perhaps implement this in Rust for performance, since we'll be running a lot of this math)
-- [ ] Game data parsing for each season's objectives
-- [ ] Update timeseries based on rating calculations
-- [ ] Datagrid with pretty graphs, etc.
-- [ ] Implement navigation command palette
+- [x] Initial frontend implementation
+- [x] Game data parsing for each season's objectives
+- [ ] Datagrid with pretty graphs, etc. (WIP)
 - [ ] Match predictions, event insights, monte-carlo ranking prediction
 
 ## Tech Stack
@@ -26,5 +22,4 @@ The system is designed around the lack of manual data entry - it should provide 
 
 - Next.js & React
 - shadcn/ui (plus Lucide icons)
-- Redis (especially its timeseries feature)
-
+- TanStack Table
