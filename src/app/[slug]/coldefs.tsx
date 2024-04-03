@@ -3,7 +3,7 @@
 import { TeamAvatar } from "@/components/avatar/avatar";
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowDownIcon, ArrowUpDownIcon, ArrowUpIcon } from "lucide-react";
+import { ArrowDownIcon, ArrowUpDownIcon, ArrowUpIcon, BoomBox, Gamepad2Icon, LifeBuoyIcon, MountainIcon, RouteIcon, ScaleIcon, SigmaIcon, SpeakerIcon, StarIcon } from "lucide-react";
 
 const standardizedKeyMap: Record<string, string> = {
     'total_points': 'epa',
@@ -78,11 +78,11 @@ export function deriveColDefs(data: any[]) {
                         {convertHeader(keys[i])}
 
                         {column.getIsSorted() === "desc" ? (
-                            <ArrowDownIcon className="ml-2 h-4 w-4 text-white" />
+                            <ArrowDownIcon className="ms-2 h-4 w-4 text-white" />
                         ) : column.getIsSorted() === "asc" ? (
-                            <ArrowUpIcon className="ml-2 h-4 w-4 text-white" />
+                            <ArrowUpIcon className="ms-2 h-4 w-4 text-white" />
                         ) : (
-                            <ArrowUpDownIcon className="ml-2 h-4 w-4" />
+                            <ArrowUpDownIcon className="ms-2 h-4 w-4" />
                         )}
                     </Button>
                 )
@@ -97,8 +97,47 @@ export function deriveColDefs(data: any[]) {
 }
 
 function convertHeader(key: string) {
+    let icon = null;
+
+
+
+
     // replace underscores with spaces and capitalize the first letter of each word
-    return key.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ").replace("Rp", "RP").replace("Points", "Pts")
+    key = key.split("_").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")
 
+    if (key.startsWith('Total')) {
+        icon = (<SigmaIcon className="h-4 w-4 me-1" />)
+        key = key.replace(/^Total /g, "")
+    } else if (key.includes('Auto')) {
+        icon = (<RouteIcon className="h-4 w-4 me-1" />)
+        key = key.replace(/^Auto /g, "")
+    } else if (key.includes('Teleop')) {
+        icon = (<Gamepad2Icon className="h-4 w-4 me-1" />)
+        key = key.replace(/^Teleop /g, "")
+    } else if (key.includes('Spotlight')) {
+        icon = (<LifeBuoyIcon className="h-4 w-4 me-1" />)
+        key = key.replace(/^Endgame /g, "")
+    } else if (key.includes('Endgame')) {
+        icon = (<MountainIcon className="h-4 w-4 me-1" />)
+        key = key.replace(/^Endgame /g, "")
+    } else if (key.includes('Rp')) {
+        icon = (<StarIcon className="h-4 w-4 me-1" />)
+        key = key.replace(/ Rp/g, "")
+    } else if (key.includes('Tiebreaker')) {
+        icon = (<ScaleIcon className="h-4 w-4 me-1" />)
+        key = key.replace(/Tiebreaker Points/g, "Tiebreaker")
+    } else if (key.includes('Speaker') && !icon) {
+        icon = (<SpeakerIcon className="h-4 w-4 me-1" />)
+        key = key.replace(/Speaker /g, "")
+    } else if (key.includes('Amplified') && !icon) {
+        icon = (<SpeakerIcon className="h-4 w-4 me-1" />)
+    } else if (key.includes('Amp') && !icon) {
+        icon = (<BoomBox className="h-4 w-4 me-1" />)
+        key = key.replace(/Amp /g, "")
+    }
 
+    return (<>
+        {icon}
+        {key}
+    </>)
 }

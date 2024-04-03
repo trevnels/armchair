@@ -1,5 +1,5 @@
 import { NavbarButton } from "@/components/navbar";
-import { AreaChart, Compass, Table, Wand2 } from "lucide-react";
+import { AreaChart, Bot, Compass, Table, Wand2 } from "lucide-react";
 import { ReactNode } from "react";
 import ClientGrid from "./client-grid";
 
@@ -31,6 +31,9 @@ export default function MainLayout({
         <NavbarButton segment="explorer">
           <Compass />
         </NavbarButton>
+        <NavbarButton segment="robots">
+          <Bot />
+        </NavbarButton>
         <NavbarButton segment="insights">
           <AreaChart />
         </NavbarButton>
@@ -39,7 +42,7 @@ export default function MainLayout({
         </NavbarButton>
       </div>
       {children}
-      <div className="flex-grow min-w-0 min-h-0">
+      <div className="flex-grow min-w-0 min-h-0 relative">
         <ClientGrid slug={params.slug} />
       </div>
     </main>

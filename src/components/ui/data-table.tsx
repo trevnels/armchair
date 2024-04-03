@@ -78,67 +78,69 @@ export function DataTable<TData, TValue>({
   }, [fetchMoreOnBottomReached])
 
   return (
-    <div ref={tableContainerRef} onScroll={e => fetchMoreOnBottomReached(e.target as HTMLDivElement)} className="relative w-full h-full overflow-auto overscroll-contain">
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
-                return (
-                  <TableHead
-                    key={header.id}
-                    style={{
-                      width: header.getSize(),
-                      minWidth: header.column.columnDef.minSize,
-                      maxWidth: header.column.columnDef.maxSize,
-                      left: header.column.getIsPinned() ? header.column.getStart() : undefined,
-                    }}
-                    className={cn(header.column.getIsPinned() === 'left' ? 'sticky' : '')}
-                  >
-                    {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
-                  </TableHead>
-                )
-              })}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() && "selected"}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}
-                    style={{
-                      width: cell.column.getSize(),
-                      left: cell.column.getIsPinned() ? cell.column.getStart() : undefined,
-                    }}
-                    className={cn(cell.column.getIsPinned() === 'left' ? 'sticky' : '')}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
+    <>
+      <div ref={tableContainerRef} onScroll={e => fetchMoreOnBottomReached(e.target as HTMLDivElement)} className="relative w-full h-full overflow-auto overscroll-contain">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead
+                      key={header.id}
+                      style={{
+                        width: header.getSize(),
+                        minWidth: header.column.columnDef.minSize,
+                        maxWidth: header.column.columnDef.maxSize,
+                        left: header.column.getIsPinned() ? header.column.getStart() : undefined,
+                      }}
+                      className={cn(header.column.getIsPinned() === 'left' ? 'sticky' : '')}
+                    >
+                      {!header.isPlaceholder && flexRender(header.column.columnDef.header, header.getContext())}
+                    </TableHead>
+                  )
+                })}
               </TableRow>
-            ))
-          ) : (isFetching ? null : (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
-              </TableCell>
-            </TableRow>))
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}
+                      style={{
+                        width: cell.column.getSize(),
+                        left: cell.column.getIsPinned() ? cell.column.getStart() : undefined,
+                      }}
+                      className={cn(cell.column.getIsPinned() === 'left' ? 'sticky' : '')}>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (isFetching ? null : (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-24 text-center">
+                  No results.
+                </TableCell>
+              </TableRow>))
 
-          }
-        </TableBody>
-      </Table>
+            }
+          </TableBody>
+        </Table>
+
+      </div >
       {
-        isFetching ?
-          <div className="fixed bottom-0 py-24 md:py-16 flex items-center justify-center w-full">
-            <div className="bg-muted/50 p-4 rounded-lg w-24 h-24 flex items-center justify-center">
-              <Loader2 className="animate-spin w-full h-full" />
-            </div>
-          </div> : null
+        (isFetching) ?
+          <div className="absolute bottom-24 left-1/2 -translate-x-1/2 bg-muted/50 p-4 rounded-lg w-24 h-24 flex items-center justify-center">
+            <Loader2 className="animate-spin w-full h-full" />
+          </div>
+          : null
       }
-    </div >
+    </>
   )
 }

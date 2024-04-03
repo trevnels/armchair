@@ -51,11 +51,29 @@ export async function getEventStandings(eventKey: string, offset: number = 0, so
 
 // TODO: merge getDistrictStandings and getSeasonStandings since they are almost identical
 
+const districtMapping = {
+    "mar": "fma",
+    "fma": "fma",
+    "nc": "fnc",
+    "fnc": "fnc",
+    "tx": "fit",
+    "fit": "fit",
+    "in": "fin",
+    "fin": "fin",
+    "fim": "fim",
+    "ne": "ne",
+    "chs": "chs",
+    "ont": "ont",
+    "pnw": "pnw",
+    "pch": "pch",
+    "isr": "isr"
+}
+
 export async function getDistrictStandings(districtKey: string, offset: number = 0, sort: StatboticsSort = { key: 'team', direction: 'asc' }) {
 
     // break district key (i.e.) 2024fnc into year and district code. this needs error handling eventually
     const year = districtKey.substring(0, 4)
-    const code = districtKey.substring(4)
+    let code = districtMapping[districtKey.substring(4)]
 
     const url = new URL(`https://api.statbotics.io/v3/team_years`)
 

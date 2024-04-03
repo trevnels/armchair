@@ -4,6 +4,16 @@ const nextConfig = {
         fetches: {
             fullUrl: true,
         }
+    },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'i.imgur.com',
+                port: '',
+                pathname: '/**',
+            }
+        ]
     }
 };
 
