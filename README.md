@@ -10,6 +10,8 @@ An alternative frontend for browsing [Statbotics](https://www.statbotics.io/) da
 
 The current implementation is very rough, but will be cleaned up and optimized as I have time.
 
+![image](https://github.com/trevnels/armchair/assets/25140503/eb0ac76f-2e17-4600-9bc6-28a997312788)
+
 ## To Do
 - [x] UI Design
 - [x] Initial frontend implementation
